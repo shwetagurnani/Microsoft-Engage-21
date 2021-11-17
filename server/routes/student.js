@@ -1,0 +1,11 @@
+const express = require("express");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const Validator = require("validator");
+const isEmpty = require("is-empty");
+const keys = require("../config/keys");
+var spawn = require("child_process").spawn;
+const Appointment = require("../models/Appointment");
+const { verifyToken } = require("../middlewares/verifyToken");
+const Doctor = require("../models/Doctor");
