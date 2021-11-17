@@ -215,21 +215,19 @@ const StudentSignup = (props) => {
                 className={classes.field}
               />
               <FormControl  variant="outlined" className={classes.field}>
-
-                  <InputLabel id="demo-simple-select-outlined-label"  >Branch</InputLabel>
-                  <Select
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
-                  value={Branch}
-                  onChange={handleChange}
-                  label = "Branch"
-                  >
-
-                  <MenuItem value={10}>CSE</MenuItem>
-                  <MenuItem value={20}>IT</MenuItem>
-                  <MenuItem value={30}>ECE</MenuItem>
-                  </Select>
-                  </FormControl>
+                <InputLabel id="demo-simple-select-outlined-label"  >Branch</InputLabel>
+                <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={Branch}
+                onChange={handleChange}
+                label = "Branch"
+                >
+                <MenuItem value={10}>CSE</MenuItem>
+                <MenuItem value={20}>IT</MenuItem>
+                <MenuItem value={30}>ECE</MenuItem>
+                </Select>
+              </FormControl>
 
                   <TextField
                   id="outlined-basic"

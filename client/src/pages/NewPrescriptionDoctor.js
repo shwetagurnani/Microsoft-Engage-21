@@ -1,17 +1,62 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link, useHistory } from "react-router-dom";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Toolbar from "@material-ui/core/Toolbar";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  extra: {
-    textAlign: "center",
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    width: "auto",
+    [theme.breakpoints.up("md")]: {
+     
+      minWidth: 120,
+    },
   },
-  extra1: {
-    textAlign: "center",
-    margin: "10px",
-    padding: "20px",
-    boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19)",
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  Form: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  FormContent: {
+    height: 500,
+    marginTop: 30,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    alignItems: "space-evenly",
+  },
+  TextInput: {
+    margin: 10,
+    borderBottom: "none",
+    boxShadow: "none",
+    textTransform: "none",
+  },
+  Button: {
+    backgroundColor: "rgba(0, 128, 128, 1)",
+    color: "#fff",
+    margin: theme.spacing(3, 2),
+    width: "300px",
+    height: 50,
+    alignSelf: "center",
+
+    [theme.breakpoints.up("md")]: {
+      width: "350px",
+    },
+  },
+  Border: {
+    border: "1px solid rgba(0, 128, 128, 0.5)",
+    padding: "15px",
   },
   heading: {
     fontFamily: "Lobster, cursive",
@@ -27,169 +72,208 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "80px",
     },
   },
-  heading1: {
-    fontFamily: "Open Sans Condensed, sans-serif",
-    fontWeight: "bolder",
-    textTransform: "uppercase",
-    color: "rgba(0, 128, 128, 1)",
-    letterSpacing: ".25em",
-    fontSize: "25px",
-    marginTop: "10px",
-  },
-
-  subHeading: {
-    fontFamily: "Akaya Telivigala, cursive",
-    color: "black",
-    fontSize: "15px",
-    letterSpacing: ".05em",
-    marginTop: "10px",
-
-    [theme.breakpoints.up("md")]: {
-      fontSize: "20px",
-      marginTop: "20px",
-    },
-  },
-  button: {
-    backgroundColor: "rgba(0, 128, 128, 1)",
-    padding: theme.spacing(1, 2),
-    textTransform: "none",
-    color: "white",
-    margin: "20px",
-    float: "center",
-    fontWeight: "normal",
-    boxShadow: "20px",
-    marginTop: "10px",
-    fontSize: "15px",
-    fontFamily: "Jost, sans-serif",
-    width: "300px",
-    height: "50px",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "15px",
-      width: "400px",
-      height: "50px",
-    },
-  },
-
-  feature: {},
-
-  form: {
-    fontFamily: "Jost, sans-serif",
-
-    alignItems: "center",
-
-    backgroundColor: "rgba(0, 128, 128, 0.05)",
-    borderLeft: "8px solid rgba(0, 128, 128, 1)",
-    width: "auto",
-    margin: "20px",
-    padding: "15px",
-    [theme.breakpoints.up("md")]: {
-      width: "800px",
-    },
-    // justifyIt
-  },
-  extra2: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    color: "rgba(0, 128, 128, 1)",
-    margin: "4px 0px",
-  },
-  textField: {
-    width: "200px",
-    height: "22px",
-  },
-  newHeading: {
-    fontFamily: "Jost, sans-serif",
-    textAlign: "center",
-    // maxWidth: "950px",
-    [theme.breakpoints.up("md")]: {
-      maxWidth: "950px",
-    },
-  },
 }));
 
-const NewPrescription = (props) => {
+const NewPrescription = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [newPres, setNewPres] = useState({
-    img: "",
-    name: "",
-  });
+  const [branch, setBranch] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [room, setRoom] = React.useState("");
+  const [days, setDays] = React.useState("");
+  const [subject, setSubject] = React.useState("");
+  const [semester, setSemester] = React.useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("img", newPres.img);
-    formData.append("name", newPres.name);
-    console.log(localStorage.getItem("token"));
-    axios({
-      method: "POST",
-      url: "http://localhost:3000/doctor/add/",
-      headers: { "x-access-token": localStorage.getItem("token") },
-      data: formData,
-    })
-      .then((res) => {
-        history.push("/prescription");
-        console.log(res);
-      })
-      .catch((err) => {
-        alert("Username of the patient is wrong");
-        history.push("/uploadPrescriptionDoctor")
+  const [doctorSpecialities, setDoctorSpecialities] = useState([]);
+  const [doctorName, setDoctorName] = useState([]);
+  const [doctorDays, setDoctorDays] = useState([]);
+
+  useEffect(() => {
+    const sendingRequest = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/doctor/getSpecialization`
+        );
+        const responseData = await response.json();
+        setDoctorSpecialities(Object.keys(responseData.response));
+      } catch (err) {
         console.log(err);
-      });
+      }
+    };
+    sendingRequest();
+
+    const sendingRequest2 = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/doctor/getSpecialization`
+        );
+        const responseData = await response.json();
+        Object.entries(responseData.response).map((mainitem) => {
+          setDoctorName((item) => {
+            return [
+              ...item,
+              {
+                id: mainitem[0],
+                value: mainitem[1],
+              },
+            ];
+          });
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    sendingRequest2();
+
+    const sendingRequest3 = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/doctor/getDays`);
+        const responseData = await response.json();
+
+        Object.entries(responseData.response).map((mainitem) => {
+          setDoctorDays((item) => {
+            return [
+              ...item,
+              {
+                id: mainitem[0],
+                value: mainitem[1],
+              },
+            ];
+          });
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    sendingRequest3();
+  }, []);
+
+  const handleChange = (event) => {
+    setBranch(event.target.value);
+  };
+  const handleChange2 = (event) => {
+    setName(event.target.value);
+  };
+  const handleChange3 = (event) => {
+    setDays(event.target.value);
   };
 
-  const handlePhoto = (e) => {
-    setNewPres({ ...newPres, img: e.target.files[0] });
-  };
-
-  const handleChange = (e) => {
-    setNewPres({ ...newPres, [e.target.name]: e.target.value });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `http://localhost:3000/patient/postAppointment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": localStorage.getItem("token"),
+          },
+          body: JSON.stringify({
+            name: name,
+            status: 0,
+            specialization: branch,
+            day: days,
+            subject: subject ,
+          }),
+        }
+      );
+      const responseData = await response.json();
+      if (responseData.success === false) throw Error;
+      history.push("/patientdashboard");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
-    <div>
-      <div className={classes.heading}>Write a prescription</div>
-      <form
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-        className={classes.extra2}
-      >
-        <div>
-          <div className={classes.form}>
-            <h3 className={classes.text}>Upload a Prescription</h3>
-            <input
-              type="file"
-              accept=".png, .jpg, .jpeg"
-              name="photo"
-              onChange={handlePhoto}
-              className={classes.textField}
-            />
-          </div>
+    <React.Fragment>
+      <Toolbar />
+      <div className={classes.heading}>Create a New Classroom</div>
+      <Grid container>
+        <Grid item xs={12} className={classes.Form}>
+          <div className={classes.Border}>
+            <form onSubmit={handleSubmit}>
+              <div className={classes.FormContent}>
+              <TextField
+                  id="standard-basic"
+                  label="Subject"
+                  className={classes.TextInput}
+                  onChange={(e) => {
+                    setSubject(e.target.value);
+                  }}
+                />
+                 <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">
+                    Branch
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={branch}
+                    onChange={handleChange}
+                  >
+                    <MenuItem value="CSE">CSE</MenuItem>
+                    <MenuItem value="IT"> IT</MenuItem>
+                    <MenuItem value="ECE">ECE</MenuItem>
+                  
+                  </Select>
+                </FormControl>
+                <TextField
+                  id="standard-basic"
+                  label="Semester"
+                  className={classes.TextInput}
+                  type= "number"
+                  InputProps={{ inputProps: { min: 1, max: 8 } }}
+                  onChange={(e) => {
+                    setSemester(e.target.value);
+                  }}
+                />
+                 <TextField
+                  id="standard-basic"
+                  label="Room Number"
+                  className={classes.TextInput}
+                  type= "number"
+                  InputProps={{ inputProps: { min: 1, max: 10 } }}
+                  onChange={(e) => {
+                    setRoom(e.target.value);
+                  }}
+                />
 
-          <div className={classes.form}>
-            <h3 className={classes.text}>UserName:</h3>
-            <input
-              type="text"
-              placeholder="name"
-              name="name"
-              value={newPres.name}
-              onChange={handleChange}
-              className={classes.textField}
-            />
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">
+                    Slot Number
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={days}
+                    onChange={handleChange3}
+                  >
+                    {name &&
+                      doctorDays
+                        .filter((item) => item.id === name)
+                        .map((filteredvalue) => {
+                          return filteredvalue.value.map((item) => {
+                            return <MenuItem value={item}>{item}</MenuItem>;
+                          });
+                        })}
+                  </Select>
+                </FormControl>
+           
+                <Button
+                  variant="contained"
+                  className={classes.Button}
+                  type="submit"
+                >
+                  Get Appointment
+                </Button>
+              </div>
+            </form>
           </div>
-          <div className={classes.extra2}>
-            <input
-              type="submit"
-              value="Upload a prescription"
-              className={classes.button}
-            />
-          </div>
-        </div>
-      </form>
-    </div>
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 };
 

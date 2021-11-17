@@ -15,11 +15,14 @@ import { Link } from "react-router-dom";
 
 import { useHistory } from "react-router-dom";
 
+
 const useStyles = makeStyles((theme) => ({
   main: {
     // whiteSpace: "nowrap",
     // maxHeight: 650,
     // height: 618,
+    alignItems: "center",
+    
    
   },
   AppBar: {
@@ -30,19 +33,26 @@ const useStyles = makeStyles((theme) => ({
     
   },
   AppBarContent: {
-    display: "flex",
+    // display: "flex",
     alignItems: "center",
     height: 55,
     minHeight: 55,
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   typo: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     fontFamily: "Open Sans Condensed, sans-serif",
     fontWeight: "bolder",
     textTransform: "uppercase",
     color: "white",
     letterSpacing: ".1em",
-    fontSize: "20px",
+    fontSize: "25px",
     marginTop: "10px",
+    textAlign: "center",
+ 
     // backgroundColor: "#eeb7ba",
    
   },
@@ -75,6 +85,15 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: "center",
 		justifyContent: "center",
 	},
+
+  margins :{
+
+    [theme.breakpoints.up("md")]: {
+      margin: "0px 200px 0px 200px",
+    },
+    margin: "2px",
+
+  },
 }));
 
 function ElevationScroll(props) {
@@ -153,91 +172,45 @@ const Application = (props) => {
 
       <div className={classes.extra2}>
         <Button className={classes.Button} href="/uploadPrescriptionDoctor">
-          Write A Prescription
+          Create New Classroom
         </Button>
         </div>
-      <Grid container className={classes.main}>
-        <Grid item xs={12} lg={4}>
-          <React.Fragment>
-            <CssBaseline />
-
-            <ElevationScroll {...props}>
-              <AppBar className={classes.AppBar}>
-                <Toolbar className={classes.AppBarContent}>
-                  <Typography variant="h6" className={classes.typo}>
-                    Under Consideration
-                  </Typography>
-                  <Typography variant="h6" className={classes.typoTotal}>
-                    {underSize}
-                  </Typography>
-                </Toolbar>
-              </AppBar>
-            </ElevationScroll>
-            <Container>
-              <Box my={2} overflow="auto">
-                {underApplication.map((item) => {
-                  return (
-                    <DashboardCard underApplication={item} option={true} />
-                  );
-                })}
-              </Box>
-            </Container>
-          </React.Fragment>
-        </Grid>
-
-        <Grid item xs={12} lg={4}>
-          <React.Fragment>
-            <CssBaseline />
-            <ElevationScroll {...props}>
-              <AppBar className={classes.AppBar}>
-                <Toolbar className={classes.AppBarContent}>
-                  <Typography variant="h6" className={classes.typo}>
-                    Accepted
-                  </Typography>
-                  <Typography variant="h6" className={classes.typoTotal}>
-                    {acceptSize}
-                  </Typography>
-                </Toolbar>
-              </AppBar>
-            </ElevationScroll>
-            <Container>
-              <Box my={2} overflow="auto">
-                {acceptedApplication.map((item) => {
-                  return (
-                    <DashboardCard underApplication={item} option={false} />
-                  );
-                })}
-              </Box>
-            </Container>
-          </React.Fragment>
-        </Grid>
-        <Grid item xs={12} lg={4}>
-          <React.Fragment>
-            <CssBaseline />
-            <ElevationScroll {...props}>
-              <AppBar className={classes.AppBar}>
-                <Toolbar className={classes.AppBarContent}>
-                  <Typography variant="h6" className={classes.typo}>
-                    Rejected
-                  </Typography>
-                  <Typography variant="h6" className={classes.typoTotal}>
-                    {rejectSize}
-                  </Typography>
-                </Toolbar>
-              </AppBar>
-            </ElevationScroll>
-            <Container>
-              <Box my={2} overflow="auto">
-                {rejectedApplication.map((item) => {
-                  return (
-                    <DashboardCard underApplication={item} option={false} />
-                  );
-                })}
-              </Box>
-            </Container>
-          </React.Fragment>
-        </Grid>
-      </Grid>
+        <div className = {classes.margins}>
+          <Grid container direction="row" justifyContent="center" alignItems="center" className={classes.main}>
+            <Grid item xs={12} lg={12}>
+              <React.Fragment>
+                <CssBaseline />
+                <ElevationScroll {...props}>
+                  <AppBar className={classes.AppBar}>
+                    <Toolbar className={classes.AppBarContent}>
+                      <Typography variant="h6" className={classes.typo}>
+                        Classrooms
+                      </Typography>
+                      <Typography variant="h6" className={classes.typoTotal}>
+                        {rejectSize}
+                      </Typography>
+                    </Toolbar>
+                  </AppBar>
+                </ElevationScroll>
+                <Container>
+                  <Box my={2} overflow="auto">
+                    {rejectedApplication.map((item) => {
+                      return (
+                        <Container>
+                        <Grid item xs = {12} lg = {6}>
+                          <DashboardCard underApplication={item} option={false} />
+                          </Grid>
+                          </Container>
+                        
+                      );
+                    })}
+                  </Box>
+                </Container>
+              </React.Fragment>
+            </Grid>
+          </Grid>
+        </div>
+      
     </div>
   );
 };
