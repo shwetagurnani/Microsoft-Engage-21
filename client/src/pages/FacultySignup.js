@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React,{useState} from "react";
 import axios from "axios";
 import {
   Grid,
@@ -31,14 +31,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundPosition: "center",
     width: "70%",
-    padding: theme.spacing(4, 16),
-    [theme.breakpoints.up("md")]: {
     
+    [theme.breakpoints.up("md")]: {
+      // height: 700,
       width: "40%",
+      padding: theme.spacing(0, 16, 0, 0),
     },
-
-    //  margin: 24,
-    //  padding: 24,
   },
 
   extra: {
@@ -50,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0, 0),
     flexWrap: "wrap",
     [theme.breakpoints.up("md")]: {
-      margin: theme.spacing(4, 2),
+      margin: theme.spacing(4,2),
+      marginBottom: "140px",
     },
   },
   footer: {
@@ -102,14 +101,21 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const PatientSignup = (props) => {
+const FacultySignup = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+
+  // register state
+  const [username,setUsername] = useState("");
+  const [email,setEmail] = useState("");
+  const [address,setAddress] = useState("");
+  const [req,setReqNo] = useState("");
+  const [hos,setHos] = useState("");
+  const [speci,setSpeci] = useState("");
+  const [contact,setContact] = useState("");
+  const [password,setPassword] = useState("");
+  const [confirmPassword,setConfirmPassword] = useState("");
+  const [achievement,setAchievement] = useState("");
 
   const paperStyle = {
     padding: 20,
@@ -121,113 +127,101 @@ const PatientSignup = (props) => {
   const submitHandler = (e) => {
     console.log("sucess");
     e.preventDefault();
-
+    
     axios
-      .post("http://localhost:3000/patient/register", {
-        name: name,
-        email: email,
-        password: password,
-        phone: phone,
-        password2: confirmPassword,
-      })
+      .post("http://localhost:3000/doctor/register", {
+                  "name":username,
+                  "email":email,
+                  "password":password,
+                  "password2":confirmPassword,
+                  "phone":contact,
+                  "reg_num":req,
+                  "address":address,
+                  "specialization":speci,
+                  "hospital_name":hos,
+                  "achievements":achievement
+              })
       .then((res) => {
+        console.log(res);
         if (res.data.success) {
           console.log(res.data);
           localStorage.setItem("token", res.data.token);
           // dispatch({ type: "SET_ROLE", payload: "DOCTOR" });
           // dispatch({ type: "SET_USERID", payload: res.data.id });
           // dispatch({ type: "LOG_IN" });
-          props.history.push("/patientdashboard");
-        } else if (res.data.email) {
+          // props.history.push("/doctorlogin");
+        } 
+        else if(res.data.email) {
           alert("User already exist, please sign in to continue");
-          history.push("/patientlogin");
-        } else {
+          history.push("/doctorlogin");
+        }else {
           console.log(res.data);
           // props.history.push("/doctologin");
         }
       });
-  };
+  }
 
   const btnstyle = { margin: "8px 0" };
   return (
     <div className={classes.extra}>
-      <img src="./home5.jpg" alt="lady" className={classes.BackgroundHead} />
-      <div>
-        <Grid>
-          <div className={classes.paperStyle}>
-            <Grid align="center">
-              <h4 className={classes.heading}>Sign Up</h4>
-            </Grid>
-            <div className={classes.extra1}>
-              <TextField
-                id="outlined-basic"
-                label="Usename"
-                variant="outlined"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                className={classes.field}
-              />
-              <TextField
-                id="outlined-basic"
-                label="Email"
-                variant="outlined"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                className={classes.field}
-              />
-              <TextField
-                id="outlined-basic"
-                label="contact Number"
-                variant="outlined"
-                onChange={(e) => {
-                  setPhone(e.target.value);
-                }}
-                className={classes.field}
-              />
-
-              <TextField
-                id="outlined-basic"
-                label="Password"
-                variant="outlined"
-                type="password"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                className={classes.field}
-              />
-              <TextField
-                id="outlined-basic"
-                label=" Confirm Password"
-                variant="outlined"
-                type="password"
-                onChange={(e) => {
-                  setConfirmPassword(e.target.value);
-                }}
-                className={classes.field}
-              />
-
+    <img src="./home5.jpg" alt="lady" className={classes.BackgroundHead} />
+    <div>
+      <Grid>
+        <div className={classes.paperStyle}>
+          <Grid align="center">
+            <h4 className={classes.heading}>Sign Up</h4>
+          </Grid>
+          <div className={classes.extra1}>
+            <TextField
+              id="outlined-basic"
+              label="Usename"
+              variant="outlined"
+              onChange = {(e) => {setUsername(e.target.value)}}
+              className={classes.field}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Email"
+              variant="outlined"
+              className={classes.field}
+              onChange = {(e) => {setEmail(e.target.value)}}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              type="password"
+              className={classes.field}
+              onChange = {(e) => {setPassword(e.target.value)}}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Confirm Password"
+              variant="outlined"
+              type="password"
+              className={classes.field}
+              onChange = {(e) => {setConfirmPassword(e.target.value)}}
+            />
               <Button
                 type="submit"
                 variant="contained"
                 className={classes.btnstyle}
                 fullWidth
-                onClick={submitHandler}
+                onClick= {submitHandler}
                 href="/"
               >
-                Sign Up As Patient
+                Sign Up As Faculty
               </Button>
-            </div>
-
-            <Typography>
-              Already a member ?<Link href="/patientlogin">Sign In</Link>
-            </Typography>
           </div>
-        </Grid>
-      </div>
+
+          <Typography>
+            Already a member ?<Link href="/facultylogin">Sign In</Link>
+          </Typography>
+        </div>
+      </Grid>
     </div>
+  </div>
   );
 };
 
-export default PatientSignup;
+export default FacultySignup;

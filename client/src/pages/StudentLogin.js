@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const PatientLogin = (props) => {
+const StudentLogin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
 
@@ -168,12 +168,12 @@ const PatientLogin = (props) => {
                 fullWidth
                 onClick={handleLogin}
               >
-                Sign In As Patient
+                Sign In As Student
               </Button>
             </div>
 
             <Typography>
-              New Member ?<Link href="/patientsignup">Sign Up</Link>
+              New Member ?<Link href="/studentsignup">Sign Up</Link>
             </Typography>
           </div>
         </Grid>
@@ -182,4 +182,4 @@ const PatientLogin = (props) => {
   );
 };
 
-export default PatientLogin;
+export default StudentLogin;

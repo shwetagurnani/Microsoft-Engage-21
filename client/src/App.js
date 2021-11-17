@@ -4,12 +4,12 @@ import "./App.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./pages/Home";
-import DoctorLogin from "./pages/DoctorLogin";
+import FacultyLogin from "./pages/FacultyLogin";
 import NewPrescriptionDoctor from "./pages/NewPrescriptionDoctor";
 import NewPrescriptionPatient from "./pages/NewPrescriptionPatient";
-import DoctorSignup from "./pages/DoctorSignup";
-import PatientLogin from "./pages/PatientLogin";
-import PatientSignup from "./pages/PatientSignup";
+import FacultySignup from "./pages/FacultySignup";
+import StudentLogin from "./pages/StudentLogin";
+import StudentSignup from "./pages/StudentSignup";
 import DoctorDashboard from "./pages/DoctorDashboard";
 import PatientDashboard from "./pages/PatientDashboard";
 import Logout from "./components/Logout";
@@ -33,10 +33,10 @@ const App = () => {
           <Navbar />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/doctorlogin" component={DoctorLogin} />
-            <Route path="/doctorsignup" component={DoctorSignup} />
-            <Route path="/patientsignup" component={PatientSignup} />
-            <Route path="/patientlogin" component={PatientLogin} />
+            <Route path="/facultylogin" component={FacultyLogin} />
+            <Route path="/facultysignup" component={FacultySignup} />
+            <Route path="/studentsignup" component={StudentSignup} />
+            <Route path="/studentlogin" component={StudentLogin} />
             <Route path="/doctordashboard" component={DoctorDashboard} />
             <Route path="/patientdashboard" component={PatientDashboard} />
             <Route path="/Logout" component={Logout} />

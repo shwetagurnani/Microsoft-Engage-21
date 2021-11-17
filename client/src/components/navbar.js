@@ -185,23 +185,23 @@ const Navbar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <Link to="/patientsignup" className={classes.menu}>
-          Patient Signup
+        <Link to="/studentsignup" className={classes.menu}>
+          Student Signup
         </Link>
       </MenuItem>
       <MenuItem>
-        <Link to="/patientlogin" className={classes.menu}>
-          Patient Login
+        <Link to="/studentlogin" className={classes.menu}>
+          Student Login
         </Link>
       </MenuItem>
       <MenuItem>
-        <Link to="/doctorsignup" className={classes.menu}>
-          Doctor Signup
+        <Link to="/facultysignup" className={classes.menu}>
+          Faculty Signup
         </Link>
       </MenuItem>
       <MenuItem>
-        <Link to="/doctorlogin" className={classes.menu}>
-          Doctor Login
+        <Link to="/facultylogin" className={classes.menu}>
+          Faculty Login
         </Link>
       </MenuItem>
 
@@ -288,17 +288,17 @@ const Navbar = () => {
 
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
-                <Link to="/patientsignup" className={classes.menu}>
-                  Patient Signup
+                <Link to="/studentsignup" className={classes.menu}>
+                  Student Signup
                 </Link>
-                <Link to="/patientlogin" className={classes.menu}>
-                  Patient Login
+                <Link to="/studentlogin" className={classes.menu}>
+                  student Login
                 </Link>
-                <Link to="/doctorsignup" className={classes.menu}>
-                  Doctor Signup
+                <Link to="/facultysignup" className={classes.menu}>
+                  Faculty Signup
                 </Link>
-                <Link to="/doctorlogin" className={classes.menu}>
-                  Doctor Login
+                <Link to="/facultylogin" className={classes.menu}>
+                  Faculty Login
                 </Link>
                 <Link to="/features" className={classes.menu}>
                   features
