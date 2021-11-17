@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
   AppBar: {
     position: "sticky",
-    backgroundColor: "#eeb7ba",
-    color: "#fff",
+    backgroundColor: "rgba(0, 128, 128, 0.5)",
+    color: "white",
     height: 62,
     
   },
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Open Sans Condensed, sans-serif",
     fontWeight: "bolder",
     textTransform: "uppercase",
-    color: "#d3454c",
+    color: "white",
     letterSpacing: ".1em",
     fontSize: "20px",
     marginTop: "10px",
@@ -56,10 +56,10 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     lineHeight: "normal",
     letterSpacing: "normal",
-    color: "#9999a8",
+    color: "white",
   },
   Button: {
-    backgroundColor: "#d3454c",
+    backgroundColor: "rgba(0, 128, 128, 1)",
     color: "#fff",
     margin: theme.spacing(3, 2),
     width: "300px",

@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     fontFamily: "Lobster, cursive",
-    color: "#d3454c",
+    color: "rgba(0, 128, 128, 1)",
     fontSize: "20px",
     letterSpacing: ".05em",
     // textShadow: "2px 2px 8px #404040",
@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Open Sans Condensed, sans-serif",
     fontWeight: "bolder",
     textTransform: "uppercase",
-    color: "#d3454c",
+    color: "rgba(0, 128, 128, 1)",
     letterSpacing: ".25em",
     fontSize: "25px",
     marginTop: "10px",

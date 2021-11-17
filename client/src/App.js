@@ -27,7 +27,7 @@ import doctorHistoryList from './pages/features/DoctorList/DoctorHistoryList';
 
 const App = () => {
   return (
-    <>
+    <div className="App">
       <Router>
         <AuthProvider>
           <Navbar />
@@ -69,7 +69,7 @@ const App = () => {
           <Footer />
         </AuthProvider>
       </Router>
-    </>
+    </div>
   );
 };
 

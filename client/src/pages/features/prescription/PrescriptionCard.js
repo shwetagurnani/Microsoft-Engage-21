@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Open Sans Condensed, sans-serif",
     fontWeight: "bolder",
     textTransform: "uppercase",
-    color: "#d3454c",
+    color: "rgba(0, 128, 128, 1)",
     letterSpacing: ".25em",
     fontSize: "25px",
     marginTop: "10px",

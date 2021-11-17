@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     minWidth: 275,
     minHeight: 150,
     marginBottom: 20,
-    border: "1px solid #eeb7ba",
+    border: "1px solid rgba(0, 128, 128, 0.5)",
     transition: "1s",
 
     "&:hover": {
@@ -51,7 +51,7 @@ const useStyles = makeStyles({
     fontFamily: "Open Sans Condensed, sans-serif",
     fontWeight: "bolder",
     textTransform: "uppercase",
-    color: "#d3454c",
+    color: "rgba(0, 128, 128, 1)",
     letterSpacing: ".1em",
     // fontSize: "20px",
     marginTop: "10px",

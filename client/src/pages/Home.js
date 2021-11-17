@@ -7,16 +7,17 @@ import Button from "@material-ui/core/Button";
 const useStyles = makeStyles((theme) => ({
   BackgroundHead: {
     // backgroundImage: 'url('+ BackgroundHeader+')',
-    height: 400,
+    height: 'auto',
 
     // position: 'absolute',
     backgroundSize: "cover",
     backgroundPosition: "right",
-    width: "60%",
+    width: "100%",
     [theme.breakpoints.up("md")]: {
-      height: 860,
-
-      width: "70%",
+      height: 950,
+     
+      width: "100%",
+   
     },
 
     //  margin: 24,
@@ -78,11 +79,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     flexGrow: 1,
     flexWrap: "wrap",
-    margin: theme.spacing(8, 8),
+    // margin: theme.spacing(8, 8),
   },
 
   image: {
-    margin: theme.spacing(8, 8),
+    // margin: theme.spacing(8, 8),
     height: 350,
     width: 300,
     [theme.breakpoints.up("md")]: {
@@ -103,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
 text: {
       
     fontFamily: "Lobster, cursive",
-    color: "#d3454c",
+    color: "#006666",
     fontSize: "20px",
     letterSpacing: ".05em",
     textAlign: "center",
@@ -123,8 +124,8 @@ const Home = () => {
       {/* <div style={BackgroundHead}>
 
     </div> */}
-      <div className={classes.Head}>
-        <div className={classes.important}>
+      {/* <div className={classes.Head}> */}
+        {/* <div className={classes.important}>
           <div className={classes.extra}>
             <div className={classes.heading} variant="h3">
               Elegance
@@ -135,13 +136,13 @@ const Home = () => {
             <Button className={classes.button} variant="contained">
               Check My Health
             </Button>
-          </div>
-          <img src="./Bg1.png" alt="lady" className={classes.BackgroundHead} />
-        </div>
-      </div>
+          </div> */}
+          <img src="./home.png" alt="lady" className={classes.BackgroundHead} />
+        {/* </div> */}
+      {/* </div> */}
 
       <div className={classes.features}>
-        <img src="./features.png" alt="lady" className={classes.image} />
+        <img src="./doctor.png" alt="lady" className={classes.image} />
         <div>
           <div className={classes.text}>
             About Us

@@ -4,43 +4,43 @@ const Schema =mongoose.Schema;
 const DoctorSchema = new Schema({
     name: {
         type: String,
-        // required: true
+        required: true
     },
     email: {
         type: String,
-        // required: true
+        required: true
     },
     password: {
         type: String,
-        // required: true
+        required: true
     },
     otp: {
         type: String,
-        // required: true
+        required: true
     },
     isVerified: {
         type : Boolean,
-        // required: true
+        required: true
     },
     reg_num : {
         type : String,
-        // required: true,
+        required: true,
     },
     specialization : {
         type : String,
-        // required: true,
+        required: true,
     },
     hospital_name : {
         type : String,
-        // required: true,
+        required: true,
     },
     address : {
         type : String,
-        // required: true,
+        required: true,
     },
     phone : {
         type : String,
-        // required: true,
+        required: true,
     },
     mon: {
         type: Boolean,

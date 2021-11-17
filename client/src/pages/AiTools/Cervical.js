@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	heading: {
 	  fontFamily: "Lobster, cursive",
-	  color: "#d3454c",
+	  color: "rgba(0, 128, 128, 1)",
 	  fontSize: "20px",
 	  letterSpacing: ".05em",
 	  // textShadow: "2px 2px 8px #404040",
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
 	  fontFamily: "Open Sans Condensed, sans-serif",
 	  fontWeight: "bolder",
 	  textTransform: "uppercase",
-	  color: "#d3454c",
+	  color: "rgba(0, 128, 128, 1)",
 	  letterSpacing: ".25em",
 	  fontSize: "25px",
 	  marginTop: "10px",
@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
 	  },
 	},
 	button: {
-	  backgroundColor: "#d3454c",
+	  backgroundColor: "rgba(0, 128, 128, 1)",
 	  padding: theme.spacing(1, 2),
 	  textTransform: "none",
 	  color: "white",
@@ -126,8 +126,8 @@ const useStyles = makeStyles((theme) => ({
   
 	  alignItems: "center",
   
-	  backgroundColor: "#faeaeb",
-	  borderLeft: "8px solid #dd6e76",
+	  backgroundColor: "rgba(0, 128, 128, 0.05)",
+	  borderLeft: "8px solid rgba(0, 128, 128, 1)",
 	  width: "auto",
 	  margin: "20px",
 	  padding: "15px",
@@ -142,7 +142,7 @@ const useStyles = makeStyles((theme) => ({
 	  justifyContent: "center",
 	},
 	text: {
-	  color: "#d3454c",
+	  color: "rgba(0, 128, 128, 1)",
 	  margin: "4px 0px",
 	},
 	textField: {
@@ -159,7 +159,7 @@ const useStyles = makeStyles((theme) => ({
 	  },
 	},
 	Border: {
-	  border: "1px solid #eeb7ba",
+	  border: "1px solid rgba(0, 128, 128, 0.5)",
 	  padding: "20px",
 	  borderRadius: '50px',
 	  [theme.breakpoints.up("md")]: {

@@ -4,27 +4,27 @@ const Schema =mongoose.Schema;
 const PatientSchema = new Schema({
     name: {
         type: String,
-        // required: true
+        required: true
     },
     email: {
         type: String,
-        // required: true
+        required: true
     },
     password: {
         type: String,
-        // required: true
+        required: true
     },
     otp: {
         type: String,
-        // required: true
+        required: true
     },
     isVerified: {
         type : Boolean,
-        // required: true
+        required: true
     },
     phone : {
         type : String,
-        // required: true,
+        required: true,
     },
     prescription : [{
         prescriptionNo: {
@@ -43,11 +43,11 @@ const PatientSchema = new Schema({
     newchat: [{
         user_name : {
             type: String,
-            // required: true,
+            required: true,
         },
         user_id: {
             type: String,
-            // required: true,
+            required: true,
         }
     }]
 });

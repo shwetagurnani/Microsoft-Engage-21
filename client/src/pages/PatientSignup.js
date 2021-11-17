@@ -25,15 +25,16 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   BackgroundHead: {
-    height: 250,
+    // height: 250,
 
     // position: 'absolute',
     backgroundSize: "cover",
     backgroundPosition: "center",
-    width: "30%",
+    width: "70%",
     padding: theme.spacing(4, 16),
     [theme.breakpoints.up("md")]: {
-      height: 700,
+    
+      width: "40%",
     },
 
     //  margin: 24,
@@ -60,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paperStyle: {
     padding: 20,
-    height: "70vh",
+    // height: "70vh",
     // width:500,
     // margin:"20px auto"
     [theme.breakpoints.up("md")]: {
@@ -70,17 +71,17 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     fontFamily: "Lobster, cursive",
-    color: "#d3454c",
+    color: "#008080",
     fontSize: "20px",
     letterSpacing: ".05em",
     textAlign: "center",
-    textShadow: "2px 2px 6px #404040",
+    // textShadow: "2px 2px 6px #404040",
     [theme.breakpoints.up("md")]: {
       fontSize: "30px",
     },
   },
   field: {
-    backgroundColor: "#eeb7ba",
+    // backgroundColor: "#eeb7ba",
     color: "#eeb7ba",
     margin: theme.spacing(1, 2),
     width: "300px",
@@ -90,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   btnstyle: {
-    backgroundColor: "#d3454c",
+    backgroundColor: "#008080",
     color: "#fff",
     margin: theme.spacing(1, 2),
     width: "300px",
@@ -150,7 +151,7 @@ const PatientSignup = (props) => {
   const btnstyle = { margin: "8px 0" };
   return (
     <div className={classes.extra}>
-      <img src="./signup.png" alt="lady" className={classes.BackgroundHead} />
+      <img src="./home5.jpg" alt="lady" className={classes.BackgroundHead} />
       <div>
         <Grid>
           <div className={classes.paperStyle}>

@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
     // backgroundColor: "#eeb7ba",
+    marginTop: 0,
   },
   basic: {
     backgroundColor: "#fff",
@@ -24,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
     // textTransform: "uppercase",
     color: "black",
     letterSpacing: ".25em",
-    // position: 'fixed',
+    boxShadow: "0px 15px 15px -15px #388087",
+    position: 'sticky',
+    marginTop: 0,
+    height: 80
   },
   button: {
     backgroundColor: "#eeb7ba",
@@ -45,11 +49,7 @@ const useStyles = makeStyles((theme) => ({
    
     fontSize: "30px",
     letterSpacing: ".05em",
-    // fontWeight: "bolder",
-    // textTransform: "uppercase",
     color: "black",
-    // letterSpacing: ".25em",
-
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
@@ -117,8 +117,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logo: {
-    height: "64px",
-    width: "64px",
+    // height: "64px",
+    width: "180px",
+    marginLeft: 30
   }
 }));
 
@@ -230,15 +231,15 @@ const Navbar = () => {
                 aria-label="open drawer"
               >
                 <Link to="/" style={{textDecoration: 'none'}}>
-                <img src="./logofinal.png" alt="logo" className={classes.logo}></img>
+                <img src="./logo.png" alt="logo" className={classes.logo}></img>
                 </Link>
               
               </IconButton>
-              <Link to="/" style={{textDecoration: 'none'}}>
+              {/* <Link to="/" style={{textDecoration: 'none'}}>
               <Typography className={classes.title} variant="h6" noWrap>
-                Elegance
+                HealthCare
               </Typography>
-              </Link>
+              </Link> */}
               
 
               <div className={classes.grow} />
@@ -275,15 +276,15 @@ const Navbar = () => {
                 color="inherit"
                 aria-label="open drawer"
               >
-                <Link to="/" style={{textDecoration: 'none'}}>
-                <img src="./logofinal.png" alt="logo" className={classes.logo}></img>
+                <Link to="/" style={{textDecoration: 'none', margin:0, padding:0}}>
+                <img src="./logo.png" alt="logo" className={classes.logo}></img>
                 </Link>
               </IconButton>
-              <Link to="/" style={{textDecoration: 'none'}}>
+              {/* <Link to="/" style={{textDecoration: 'none'}}>
               <Typography className={classes.title} variant="h6" noWrap>
-                Elegance
+              HealthCare
               </Typography>
-              </Link>
+              </Link> */}
 
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>

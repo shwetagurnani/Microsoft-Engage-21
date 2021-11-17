@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "images")));
 
 mongoose
   .connect(
-    "mongodb+srv://shweta:shweta@cluster0.bopuu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongodb+srv://Shreya:shreya@cluster0.4yhlx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("MongoDB connected successfully "))

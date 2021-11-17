@@ -35,14 +35,14 @@ const useStyles = makeStyles((theme) => ({
     // position: 'absolute',
     backgroundSize: "cover",
     backgroundPosition: "center",
-    backgroundColor: "#eeb7ba",
+    backgroundColor: "rgba(0, 128, 128, 0.05)",
 
     margin: "10px",
     width: 250,
     [theme.breakpoints.up("md")]: {},
   },
   Head: {
-    backgroundColor: "#eeb7ba",
+    backgroundColor: "rgba(0, 128, 128, 0.05)",
     flexGrow: 1,
    
   },
@@ -61,15 +61,15 @@ const useStyles = makeStyles((theme) => ({
   },
   extra1: {
     textAlign: "center",
-     color: "#d3454c",
+     color: "rgba(0, 128, 128, 1)",
     margin: "10px",
     padding: "20px",
     boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19)",
-    backgroundColor: "#eeb7ba",
+    backgroundColor: "rgba(0, 128, 128, 0.05)",
     cursor: "pointer",
     minWidth: "200px",
     "&:hover": {
-      backgroundColor: "#d3454c",
+      backgroundColor: "rgba(0, 128, 128, 1)",
       color:"white"
     },
 
@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     // backgroundColor: "#eeb7ba",
     "&:hover": {
-      backgroundColor: "#d3454c",
+      backgroundColor: "rgba(0, 128, 128, 1)",
      
     },
   },
@@ -116,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
       
     },
     "&:hover": {
-      backgroundColor: "#d3454c",
+      backgroundColor: "rgba(0, 128, 128, 1)",
     },
   },
   button: {
