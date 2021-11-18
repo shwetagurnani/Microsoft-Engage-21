@@ -113,7 +113,7 @@ const FacultyLogin = (props) => {
           dispatch({ type: "SET_ROLE", payload: "DOCTOR" });
           dispatch({ type: "SET_USERID", payload: res.data.id });
           dispatch({ type: "LOG_IN" });
-          props.history.push("/doctordashboard");
+          props.history.push("/facultydashboard");
         } else {
           console.log(res.data);
           props.history.push("/doctologin");

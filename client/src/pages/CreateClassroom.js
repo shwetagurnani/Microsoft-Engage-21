@@ -9,6 +9,13 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useHistory } from "react-router-dom";
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -74,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewPrescription = () => {
+const CreateClassroom = () => {
   const classes = useStyles();
   const history = useHistory();
   const [branch, setBranch] = React.useState("");
@@ -87,6 +94,11 @@ const NewPrescription = () => {
   const [doctorSpecialities, setDoctorSpecialities] = useState([]);
   const [doctorName, setDoctorName] = useState([]);
   const [doctorDays, setDoctorDays] = useState([]);
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2021-08-18T21:11:54'));
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   useEffect(() => {
     const sendingRequest = async () => {
@@ -229,6 +241,22 @@ const NewPrescription = () => {
                     setSemester(e.target.value);
                   }}
                 />
+                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                   <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="dd/MM/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    label="Date"
+                    className={classes.TextInput}
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
                  <TextField
                   id="standard-basic"
                   label="Room Number"
@@ -239,7 +267,6 @@ const NewPrescription = () => {
                     setRoom(e.target.value);
                   }}
                 />
-
                 <FormControl className={classes.formControl}>
                   <InputLabel id="demo-simple-select-label">
                     Slot Number
@@ -260,13 +287,12 @@ const NewPrescription = () => {
                         })}
                   </Select>
                 </FormControl>
-           
                 <Button
                   variant="contained"
                   className={classes.Button}
                   type="submit"
                 >
-                  Get Appointment
+                  Create a Classroom
                 </Button>
               </div>
             </form>
@@ -277,4 +303,4 @@ const NewPrescription = () => {
   );
 };
 
-export default NewPrescription;
+export default CreateClassroom;

@@ -114,7 +114,7 @@ ElevationScroll.propTypes = {
   window: PropTypes.func,
 };
 
-const Application = (props) => {
+const FacultyDashboard = (props) => {
   const classes = useStyles();
   const history = useHistory();
   const [underApplication, setUnderApplication] = useState([]);
@@ -171,7 +171,7 @@ const Application = (props) => {
       </Link> */}
 
       <div className={classes.extra2}>
-        <Button className={classes.Button} href="/uploadPrescriptionDoctor">
+        <Button className={classes.Button} href="/createclassroom">
           Create New Classroom
         </Button>
         </div>
@@ -215,4 +215,4 @@ const Application = (props) => {
   );
 };
 
-export default Application;
+export default FacultyDashboard;

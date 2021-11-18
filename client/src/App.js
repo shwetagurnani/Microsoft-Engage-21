@@ -5,12 +5,12 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./pages/Home";
 import FacultyLogin from "./pages/FacultyLogin";
-import NewPrescriptionDoctor from "./pages/NewPrescriptionDoctor";
+import CreateClassroom from "./pages/CreateClassroom";
 import NewPrescriptionPatient from "./pages/NewPrescriptionPatient";
 import FacultySignup from "./pages/FacultySignup";
 import StudentLogin from "./pages/StudentLogin";
 import StudentSignup from "./pages/StudentSignup";
-import DoctorDashboard from "./pages/DoctorDashboard";
+import FacultyDashboard from "./pages/FacultyDashboard";
 import PatientDashboard from "./pages/PatientDashboard";
 import Logout from "./components/Logout";
 import GetAppointment from "./pages/GetAppointment";
@@ -37,7 +37,7 @@ const App = () => {
             <Route path="/facultysignup" component={FacultySignup} />
             <Route path="/studentsignup" component={StudentSignup} />
             <Route path="/studentlogin" component={StudentLogin} />
-            <Route path="/doctordashboard" component={DoctorDashboard} />
+            <Route path="/facultydashboard" component={FacultyDashboard} />
             <Route path="/patientdashboard" component={PatientDashboard} />
             <Route path="/Logout" component={Logout} />
             {/* <Route path="/getAppointment" component={GetAppointment} /> */}
@@ -56,8 +56,8 @@ const App = () => {
             <Route path="/doctorlist" component={DoctorList} />
             
             <Route
-              path="/uploadPrescriptionDoctor"
-              component={NewPrescriptionDoctor}
+              path="/createclassroom"
+              component={CreateClassroom}
             />
             <Route
               path="/uploadPrescriptionPatient"
