@@ -19,7 +19,6 @@ const ClassroomSchema = new Schema({
     },
     date: {
         type: Date,
-        // required: true
     },
     room_no: {
         type: Number,
@@ -28,6 +27,10 @@ const ClassroomSchema = new Schema({
     slot_no: {
         type: Number,
         required: true
+    },
+    total_seats: {
+        type: Number,
+        default: 20
     }
 });
 

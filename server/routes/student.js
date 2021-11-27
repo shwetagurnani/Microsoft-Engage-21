@@ -74,4 +74,14 @@ router.post("/register", (req, res) => {
     });
   });
 
+  router.get("/allclasses", verifyToken, (req,res) => {
+    Classroom.find({ })
+      .then((classes) => {
+        res.json({ success: true, classes });
+      })
+      .catch((err) => {
+        res.json({ success: false });
+      });
+  })
+
   module.exports = router;
