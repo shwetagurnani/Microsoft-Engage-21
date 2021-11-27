@@ -21,19 +21,13 @@ import {
   createMuiTheme,
 } from "@material-ui/core/styles";
 
-// import BackgroundHeader from "./public/Bg1.png";
-
 const useStyles = makeStyles((theme) => ({
   BackgroundHead: {
-    // height: 250,
-
-    // position: 'absolute',
     backgroundSize: "cover",
     backgroundPosition: "center",
     width: "70%",
     
     [theme.breakpoints.up("md")]: {
-      // height: 700,
       width: "40%",
       padding: theme.spacing(0, 16, 0, 0),
     },
@@ -60,9 +54,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paperStyle: {
     padding: 20,
-    // height: "70vh",
-    // width:500,
-    // margin:"20px auto"
     [theme.breakpoints.up("md")]: {
       fontSize: "30px",
       width: 500,
@@ -74,13 +65,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     letterSpacing: ".05em",
     textAlign: "center",
-    // textShadow: "2px 2px 6px #404040",
     [theme.breakpoints.up("md")]: {
       fontSize: "30px",
     },
   },
   field: {
-    // backgroundColor: "#eeb7ba",
     color: "#eeb7ba",
     margin: theme.spacing(1, 2),
     width: "300px",
@@ -108,14 +97,7 @@ const FacultySignup = () => {
   // register state
   const [username,setUsername] = useState("");
   const [email,setEmail] = useState("");
-  const [address,setAddress] = useState("");
-  const [req,setReqNo] = useState("");
-  const [hos,setHos] = useState("");
-  const [speci,setSpeci] = useState("");
-  const [contact,setContact] = useState("");
   const [password,setPassword] = useState("");
-  const [confirmPassword,setConfirmPassword] = useState("");
-  const [achievement,setAchievement] = useState("");
 
   const paperStyle = {
     padding: 20,
@@ -129,34 +111,23 @@ const FacultySignup = () => {
     e.preventDefault();
     
     axios
-      .post("http://localhost:3000/doctor/register", {
+      .post("http://localhost:3000/faculty/register", {
                   "name":username,
                   "email":email,
                   "password":password,
-                  "password2":confirmPassword,
-                  "phone":contact,
-                  "reg_num":req,
-                  "address":address,
-                  "specialization":speci,
-                  "hospital_name":hos,
-                  "achievements":achievement
               })
       .then((res) => {
         console.log(res);
-        if (res.data.success) {
+        if (res.data._id) {
           console.log(res.data);
           localStorage.setItem("token", res.data.token);
-          // dispatch({ type: "SET_ROLE", payload: "DOCTOR" });
-          // dispatch({ type: "SET_USERID", payload: res.data.id });
-          // dispatch({ type: "LOG_IN" });
-          // props.history.push("/doctorlogin");
+          history.push("/facultydashboard");
         } 
         else if(res.data.email) {
           alert("User already exist, please sign in to continue");
-          history.push("/doctorlogin");
+          history.push("/facultylogin");
         }else {
           console.log(res.data);
-          // props.history.push("/doctologin");
         }
       });
   }
@@ -193,14 +164,6 @@ const FacultySignup = () => {
               type="password"
               className={classes.field}
               onChange = {(e) => {setPassword(e.target.value)}}
-            />
-            <TextField
-              id="outlined-basic"
-              label="Confirm Password"
-              variant="outlined"
-              type="password"
-              className={classes.field}
-              onChange = {(e) => {setConfirmPassword(e.target.value)}}
             />
               <Button
                 type="submit"

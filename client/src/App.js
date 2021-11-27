@@ -40,8 +40,6 @@ const App = () => {
             <Route path="/facultydashboard" component={FacultyDashboard} />
             <Route path="/studentdashboard" component={StudentDashboard} />
             <Route path="/Logout" component={Logout} />
-            {/* <Route path="/getAppointment" component={GetAppointment} /> */}
-            {/* <Route exact path="/chat" component={Chat} /> */}
             <ProtectedRoutes path="/getAppointment">
               <GetAppointment />
             </ProtectedRoutes>

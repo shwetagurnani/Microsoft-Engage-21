@@ -25,14 +25,11 @@ import { authContext } from "../components/context/Auth";
 
 const useStyles = makeStyles((theme) => ({
   BackgroundHead: {
-    // height: 250,
-
     backgroundSize: "cover",
     backgroundPosition: "center",
     width: "70%",
     padding: theme.spacing(4, 16),
     [theme.breakpoints.up("md")]: {
-      // height: 700,
       width:  "40%"
     },
   },
@@ -69,13 +66,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     letterSpacing: ".05em",
     textAlign: "center",
-    // textShadow: "2px 2px 6px #404040",
     [theme.breakpoints.up("md")]: {
       fontSize: "30px",
     },
   },
   field: {
-    // backgroundColor: "#eeb7ba",
     color: "#eeb7ba",
     margin: theme.spacing(1, 2),
     width: "300px",
@@ -105,7 +100,7 @@ const FacultyLogin = (props) => {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/doctor/login", { email, password })
+      .post("http://localhost:3000/faculty/login", { email, password })
       .then((res) => {
         if (res.data.success) {
           console.log(res.data);
@@ -160,8 +155,6 @@ const FacultyLogin = (props) => {
                   setPass(event.target.value);
                 }}
               />
-
-            
                 <Button
                   type="submit"
                   variant="contained"
@@ -173,7 +166,6 @@ const FacultyLogin = (props) => {
                 </Button>
             
             </div>
-
             <Typography>
               New Member ?<Link href="/facultysignup">Sign Up</Link>
             </Typography>

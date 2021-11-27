@@ -25,14 +25,11 @@ import { authContext } from "../components/context/Auth";
 
 const useStyles = makeStyles((theme) => ({
   BackgroundHead: {
-    // height: 250,
-
     backgroundSize: "cover",
     backgroundPosition: "center",
     width: "70%",
     padding: theme.spacing(4, 16),
     [theme.breakpoints.up("md")]: {
-      // height: 700,
       width: "40%",
     },
   },
@@ -57,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paperStyle: {
     padding: 20,
-    // height: "70vh",
     [theme.breakpoints.up("md")]: {
       fontSize: "30px",
       width: 500,
@@ -69,13 +65,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     letterSpacing: ".05em",
     textAlign: "center",
-    // textShadow: "2px 2px 6px #404040",
     [theme.breakpoints.up("md")]: {
       fontSize: "30px",
     },
   },
   field: {
-    // backgroundColor: "#eeb7ba",
     color: "#eeb7ba",
     margin: theme.spacing(1, 2),
     width: "300px",
@@ -105,12 +99,12 @@ const StudentLogin = (props) => {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/patient/login", { email, password })
+      .post("http://localhost:3000/student/login", { email, password })
       .then((res) => {
         if (res.data.success) {
           console.log(state);
           localStorage.setItem("token", res.data.token);
-          dispatch({ type: "SET_ROLE", payload: "PATIENT" });
+          dispatch({ type: "SET_ROLE", payload: "STUDENT" });
           dispatch({ type: "SET_USERID", payload: res.data.id });
           dispatch({ type: "LOG_IN" });
           props.history.push("/studentdashboard");
