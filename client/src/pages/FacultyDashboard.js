@@ -117,12 +117,10 @@ ElevationScroll.propTypes = {
 const FacultyDashboard = (props) => {
   const classes = useStyles();
   const history = useHistory();
-  const [underApplication, setUnderApplication] = useState([]);
-  const [acceptedApplication, setAcceptedApplication] = useState([]);
-  const [rejectedApplication, setRejectedApplication] = useState([]);
-  const [underSize, setUnderSize] = useState("");
-  const [acceptSize, setAcceptSize] = useState("");
-  const [rejectSize, setRejectSize] = useState("");
+ 
+  const [classrooms, setClassrooms] = useState([]);
+ 
+  const [classroomSize, setClassroomSize] = useState("");
 
   useEffect(() => {
     const SendingRequest = async () => {
@@ -149,12 +147,9 @@ const FacultyDashboard = (props) => {
           if (responseData.appointment[i].status === 2)
             temp3.push(responseData.appointment[i]);
         }
-        setUnderApplication(temp1);
-        setAcceptedApplication(temp2);
-        setRejectedApplication(temp3);
-        setUnderSize(temp1.length);
-        setAcceptSize(temp2.length);
-        setRejectSize(temp3.length);
+        
+        setClassrooms(temp3);
+        setClassroomSize(temp3.length);
       } catch (err) {
         console.log("hey error");
         console.log(err);
@@ -187,24 +182,24 @@ const FacultyDashboard = (props) => {
                         Classrooms
                       </Typography>
                       <Typography variant="h6" className={classes.typoTotal}>
-                        {rejectSize}
+                        {classroomSize}
                       </Typography>
                     </Toolbar>
                   </AppBar>
                 </ElevationScroll>
                 <Container>
-                  <Box my={2} overflow="auto">
-                    {rejectedApplication.map((item) => {
+                <div style={{ padding: 20 }}>
+                <Grid container row   spacing= {2} lg={12} overflow="auto">
+                    {classrooms.map((item) => {
                       return (
-                        <Container>
+                       
                         <Grid item xs = {12} lg = {6}>
                           <DashboardCard underApplication={item} option={false} />
                           </Grid>
-                          </Container>
-                        
                       );
                     })}
-                  </Box>
+                  </Grid>
+                  </div>
                 </Container>
               </React.Fragment>
             </Grid>

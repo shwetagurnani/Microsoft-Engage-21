@@ -11,7 +11,7 @@ import FacultySignup from "./pages/FacultySignup";
 import StudentLogin from "./pages/StudentLogin";
 import StudentSignup from "./pages/StudentSignup";
 import FacultyDashboard from "./pages/FacultyDashboard";
-import PatientDashboard from "./pages/PatientDashboard";
+import StudentDashboard from "./pages/StudentDashboard";
 import Logout from "./components/Logout";
 import GetAppointment from "./pages/GetAppointment";
 import Features from "./pages/features/features";
@@ -38,7 +38,7 @@ const App = () => {
             <Route path="/studentsignup" component={StudentSignup} />
             <Route path="/studentlogin" component={StudentLogin} />
             <Route path="/facultydashboard" component={FacultyDashboard} />
-            <Route path="/patientdashboard" component={PatientDashboard} />
+            <Route path="/studentdashboard" component={StudentDashboard} />
             <Route path="/Logout" component={Logout} />
             {/* <Route path="/getAppointment" component={GetAppointment} /> */}
             {/* <Route exact path="/chat" component={Chat} /> */}

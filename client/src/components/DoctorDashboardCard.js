@@ -56,6 +56,54 @@ const useStyles = makeStyles({
     marginTop: "10px",
     // backgroundColor: "#eeb7ba",
   },
+  headd: {
+    fontFamily: "Kumbh Sans, sans-serif",
+    fontWeight: "900",
+    // textTransform: "uppercase",
+    color: "#004d4d",
+    letterSpacing: ".04em",
+    fontSize: "35px",
+    marginBottom: "10px",
+    // backgroundColor: "#eeb7ba",
+
+  },
+  teacher:{
+    fontFamily: "Kumbh Sans, sans-serif",
+    fontWeight: "600",
+    // textTransform: "uppercase",
+    color: "#004d4d",
+    letterSpacing: ".04em",
+    fontSize: "25px",
+    textAlign: "center",
+    marginBottom: "40px",
+  },
+  bold: {
+    fontFamily: "Kumbh Sans, sans-serif",
+    fontWeight: "600",
+    // textTransform: "uppercase",
+    color: "#1a0000",
+    letterSpacing: ".04em",
+    fontSize: "20px",
+    display: "flex",
+    
+    marginTop: "15px"
+    
+  },
+  modal: {
+    padding: "40px",
+  },
+  normal: {
+    fontFamily: "Kumbh Sans, sans-serif",
+    fontWeight: "300",
+    // textTransform: "uppercase",
+    color: "#1a0000",
+    letterSpacing: ".04em",
+    fontSize: "20px",
+    display: "flex",
+    marginLeft: "25px"
+    
+    
+  },
 });
 
 export default function OutlinedCard(props) {
@@ -151,23 +199,38 @@ export default function OutlinedCard(props) {
         TransitionComponent={Zoom}
         transitionDelay={open ? "3000ms" : "0ms"}
       >
-        <DialogTitle id="alert-dialog-title"  className={classes.typo}>
-          {"Patient Name -"}
-          {props.underApplication && props.underApplication.patient_name}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description"  className={classes.typo}>
-            Ailment - {props.underApplication && props.underApplication.ailment}
-          </DialogContentText>
-          <DialogContentText id="alert-dialog-description"  className={classes.typo}>
-            Day - {props.underApplication && props.underApplication.day}
-          </DialogContentText>
-          <DialogContentText id="alert-dialog-description"  className={classes.typo}>
-            Specialization -{" "}
-            {props.underApplication && props.underApplication.specialization}
-          </DialogContentText>
-        </DialogContent>
-        {props.option && (
+        <div className={classes.modal}>
+
+        <div className={classes.headd}>
+        Organisation Behaviour
+        {/* {props.underApplication && props.underApplication.patient_name} */}
+        </div>
+        <div className={classes.teacher}>
+        Dr. Avantika Singh
+        </div>
+        <div className={classes.bold}>
+        <div>Branch :</div> <div className={classes.normal}> CSE</div>
+        </div>
+        <div className={classes.bold}>
+        <div>Semester :</div> <div className={classes.normal}> 7</div>
+        </div>
+        <div className={classes.bold}>
+        <div>Room Number :</div> <div className={classes.normal}> A1</div>
+        </div>
+        <div className={classes.bold}>
+        <div>Scheduled Date :</div> <div className={classes.normal}> 10/11/2021</div>
+        </div>
+        <div className={classes.bold}>
+        Scheduled Time : <div className={classes.normal}> 11:00 am</div>
+        </div>
+        <div className={classes.bold}>
+        Available Seats : <div className={classes.normal}> 20</div>
+        </div>
+        <div className={classes.bold}>
+        Total Seats :  <div className={classes.normal}> 50</div>
+        </div>
+       
+        {/* {props.option && (
           <DialogActions>
             <Button onClick={handleReject} color="primary">
               Reject
@@ -176,7 +239,8 @@ export default function OutlinedCard(props) {
               Accept
             </Button>
           </DialogActions>
-        )}
+        )} */}
+        </div>
       </Dialog>
     </React.Fragment>
   );

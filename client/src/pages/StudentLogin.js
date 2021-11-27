@@ -113,10 +113,10 @@ const StudentLogin = (props) => {
           dispatch({ type: "SET_ROLE", payload: "PATIENT" });
           dispatch({ type: "SET_USERID", payload: res.data.id });
           dispatch({ type: "LOG_IN" });
-          props.history.push("/patientdashboard");
+          props.history.push("/studentdashboard");
         } else {
           console.log(res.data);
-          props.history.push("/patientlogin");
+          props.history.push("/studentlogin");
         }
       });
   };
