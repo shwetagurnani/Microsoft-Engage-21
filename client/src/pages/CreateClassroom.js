@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useDebugValue } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -9,13 +9,13 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useHistory } from "react-router-dom";
-import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
-} from '@material-ui/pickers';
+} from "@material-ui/pickers";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     width: "auto",
     [theme.breakpoints.up("md")]: {
-     
       minWidth: 120,
     },
   },
@@ -70,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
     color: "rgba(0, 128, 128, 1)",
     fontSize: "20px",
     letterSpacing: ".05em",
-    // textShadow: "2px 2px 8px #404040",
     textAlign: "center",
     margin: "10px",
     padding: "10px",
@@ -85,96 +83,48 @@ const CreateClassroom = () => {
   const classes = useStyles();
   const history = useHistory();
   const [branch, setBranch] = React.useState("");
-  const [name, setName] = React.useState("");
   const [room, setRoom] = React.useState("");
-  const [days, setDays] = React.useState("");
   const [subject, setSubject] = React.useState("");
   const [semester, setSemester] = React.useState("");
-
-  const [doctorSpecialities, setDoctorSpecialities] = useState([]);
-  const [doctorName, setDoctorName] = useState([]);
-  const [doctorDays, setDoctorDays] = useState([]);
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2021-08-18T21:11:54'));
-
+  const [slot, setSlot] = React.useState(1);
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date("2021-08-18T21:11:54")
+  );
+  const [slots, setSlots] = React.useState([])
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
   useEffect(() => {
+    console.log("entered in slots array")
     const sendingRequest = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/doctor/getSpecialization`
+          `http://localhost:3000/faculty/availableSlots/${room}`
         );
         const responseData = await response.json();
-        setDoctorSpecialities(Object.keys(responseData.response));
+        console.log(responseData.total_slots)
+        setSlots(responseData.total_slots);
       } catch (err) {
         console.log(err);
       }
     };
     sendingRequest();
-
-    const sendingRequest2 = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3000/doctor/getSpecialization`
-        );
-        const responseData = await response.json();
-        Object.entries(responseData.response).map((mainitem) => {
-          setDoctorName((item) => {
-            return [
-              ...item,
-              {
-                id: mainitem[0],
-                value: mainitem[1],
-              },
-            ];
-          });
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    sendingRequest2();
-
-    const sendingRequest3 = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/doctor/getDays`);
-        const responseData = await response.json();
-
-        Object.entries(responseData.response).map((mainitem) => {
-          setDoctorDays((item) => {
-            return [
-              ...item,
-              {
-                id: mainitem[0],
-                value: mainitem[1],
-              },
-            ];
-          });
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    sendingRequest3();
-  }, []);
+  }, [room]);
 
   const handleChange = (event) => {
     setBranch(event.target.value);
   };
-  const handleChange2 = (event) => {
-    setName(event.target.value);
-  };
+
   const handleChange3 = (event) => {
-    setDays(event.target.value);
+    setSlot(event.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3000/patient/postAppointment`,
+        `http://localhost:3000/faculty/createClassroom`,
         {
           method: "POST",
           headers: {
@@ -182,17 +132,18 @@ const CreateClassroom = () => {
             "x-access-token": localStorage.getItem("token"),
           },
           body: JSON.stringify({
-            name: name,
-            status: 0,
-            specialization: branch,
-            day: days,
-            subject: subject ,
+            subject: subject,
+            branch: branch,
+            semester: semester,
+            date: selectedDate,
+            room_no: room,
+            slot_no: slot
           }),
         }
       );
       const responseData = await response.json();
       if (responseData.success === false) throw Error;
-      history.push("/patientdashboard");
+      history.push("/facultydashboard");
     } catch (err) {
       console.log(err);
     }
@@ -207,7 +158,7 @@ const CreateClassroom = () => {
           <div className={classes.Border}>
             <form onSubmit={handleSubmit}>
               <div className={classes.FormContent}>
-              <TextField
+                <TextField
                   id="standard-basic"
                   label="Subject"
                   className={classes.TextInput}
@@ -215,10 +166,8 @@ const CreateClassroom = () => {
                     setSubject(e.target.value);
                   }}
                 />
-                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-label">
-                    Branch
-                  </InputLabel>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">Branch</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -228,21 +177,20 @@ const CreateClassroom = () => {
                     <MenuItem value="CSE">CSE</MenuItem>
                     <MenuItem value="IT"> IT</MenuItem>
                     <MenuItem value="ECE">ECE</MenuItem>
-                  
                   </Select>
                 </FormControl>
                 <TextField
                   id="standard-basic"
                   label="Semester"
                   className={classes.TextInput}
-                  type= "number"
+                  type="number"
                   InputProps={{ inputProps: { min: 1, max: 8 } }}
                   onChange={(e) => {
                     setSemester(e.target.value);
                   }}
                 />
-                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                   <KeyboardDatePicker
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
                     disableToolbar
                     variant="inline"
                     format="dd/MM/yyyy"
@@ -253,16 +201,17 @@ const CreateClassroom = () => {
                     value={selectedDate}
                     onChange={handleDateChange}
                     KeyboardButtonProps={{
-                      'aria-label': 'change date',
+                      "aria-label": "change date",
                     }}
                   />
                 </MuiPickersUtilsProvider>
-                 <TextField
+                <TextField
                   id="standard-basic"
                   label="Room Number"
                   className={classes.TextInput}
-                  type= "number"
-                  InputProps={{ inputProps: { min: 1, max: 10 } }}
+                  type="number"
+                  InputProps={{ inputProps: { min: 1, max: 4 } }}
+                  value={room}
                   onChange={(e) => {
                     setRoom(e.target.value);
                   }}
@@ -274,17 +223,14 @@ const CreateClassroom = () => {
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={days}
+                    value={slot}
                     onChange={handleChange3}
                   >
-                    {name &&
-                      doctorDays
-                        .filter((item) => item.id === name)
-                        .map((filteredvalue) => {
-                          return filteredvalue.value.map((item) => {
-                            return <MenuItem value={item}>{item}</MenuItem>;
-                          });
-                        })}
+                    {slots
+                      .map((value) => {
+                          return <MenuItem value={value}>{value}</MenuItem>;
+                        })
+                    }
                   </Select>
                 </FormControl>
                 <Button

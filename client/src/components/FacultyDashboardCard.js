@@ -52,25 +52,19 @@ const useStyles = makeStyles({
     textTransform: "uppercase",
     color: "rgba(0, 128, 128, 1)",
     letterSpacing: ".1em",
-    // fontSize: "20px",
     marginTop: "10px",
-    // backgroundColor: "#eeb7ba",
   },
   headd: {
     fontFamily: "Kumbh Sans, sans-serif",
     fontWeight: "900",
-    // textTransform: "uppercase",
     color: "#004d4d",
     letterSpacing: ".04em",
     fontSize: "35px",
     marginBottom: "10px",
-    // backgroundColor: "#eeb7ba",
-
   },
-  teacher:{
+  teacher: {
     fontFamily: "Kumbh Sans, sans-serif",
     fontWeight: "600",
-    // textTransform: "uppercase",
     color: "#004d4d",
     letterSpacing: ".04em",
     fontSize: "25px",
@@ -80,14 +74,12 @@ const useStyles = makeStyles({
   bold: {
     fontFamily: "Kumbh Sans, sans-serif",
     fontWeight: "600",
-    // textTransform: "uppercase",
     color: "#1a0000",
     letterSpacing: ".04em",
     fontSize: "20px",
     display: "flex",
-    
-    marginTop: "15px"
-    
+
+    marginTop: "15px",
   },
   modal: {
     padding: "40px",
@@ -95,14 +87,11 @@ const useStyles = makeStyles({
   normal: {
     fontFamily: "Kumbh Sans, sans-serif",
     fontWeight: "300",
-    // textTransform: "uppercase",
     color: "#1a0000",
     letterSpacing: ".04em",
     fontSize: "20px",
     display: "flex",
-    marginLeft: "25px"
-    
-    
+    marginLeft: "25px",
   },
 });
 
@@ -121,60 +110,6 @@ export default function OutlinedCard(props) {
     setOpen(false);
   };
 
-  const handleReject = () => {
-    const SendingRequest = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/doctor/changeStatus", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            app_id: props.underApplication._id,
-            status: "2",
-          }),
-        });
-        const responseData = await response.json();
-        history.go();
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    SendingRequest();
-    setOpen(false);
-  };
-
-  useEffect(() => {
-    if (props.underApplication._id) {
-      setAppId(props.underApplication._id);
-      console.log(appId);
-    }
-  }, [props.underApplication._id]);
-
-  const handleAccept = () => {
-    const SendingRequest = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/doctor/changeStatus", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            app_id: props.underApplication._id,
-            status: "1",
-          }),
-        });
-        const responseData = await response.json();
-        console.log(responseData);
-        history.go();
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    SendingRequest();
-    setOpen(false);
-  };
-
   return (
     <React.Fragment>
       <Card
@@ -184,10 +119,11 @@ export default function OutlinedCard(props) {
       >
         <CardContent className={classes.CardContent}>
           <Typography variant="h5" component="h2" className={classes.typo}>
-            {props.underApplication && props.underApplication.patient_name}
+            Subject: {props.underApplication && props.underApplication.subject}
           </Typography>
           <Typography variant="body2" component="p">
-            {props.underApplication && props.underApplication.ailment}
+            Semester:{" "}
+            {props.underApplication && props.underApplication.semester}
           </Typography>
         </CardContent>
       </Card>
@@ -200,46 +136,40 @@ export default function OutlinedCard(props) {
         transitionDelay={open ? "3000ms" : "0ms"}
       >
         <div className={classes.modal}>
-
-        <div className={classes.headd}>
-        Organisation Behaviour
-        {/* {props.underApplication && props.underApplication.patient_name} */}
-        </div>
-        <div className={classes.teacher}>
-        Dr. Avantika Singh
-        </div>
-        <div className={classes.bold}>
-        <div>Branch :</div> <div className={classes.normal}> CSE</div>
-        </div>
-        <div className={classes.bold}>
-        <div>Semester :</div> <div className={classes.normal}> 7</div>
-        </div>
-        <div className={classes.bold}>
-        <div>Room Number :</div> <div className={classes.normal}> A1</div>
-        </div>
-        <div className={classes.bold}>
-        <div>Scheduled Date :</div> <div className={classes.normal}> 10/11/2021</div>
-        </div>
-        <div className={classes.bold}>
-        Scheduled Time : <div className={classes.normal}> 11:00 am</div>
-        </div>
-        <div className={classes.bold}>
-        Available Seats : <div className={classes.normal}> 20</div>
-        </div>
-        <div className={classes.bold}>
-        Total Seats :  <div className={classes.normal}> 50</div>
-        </div>
-       
-        {/* {props.option && (
-          <DialogActions>
-            <Button onClick={handleReject} color="primary">
-              Reject
-            </Button>
-            <Button onClick={handleAccept} color="primary" autoFocus>
-              Accept
-            </Button>
-          </DialogActions>
-        )} */}
+          <div className={classes.headd}>{props.underApplication.subject}</div>
+          <div className={classes.teacher}>Dr. Avantika Singh</div>
+          <div className={classes.bold}>
+            <div>Branch :</div>{" "}
+            <div className={classes.normal}>
+              {props.underApplication.branch}
+            </div>
+          </div>
+          <div className={classes.bold}>
+            <div>Semester :</div>{" "}
+            <div className={classes.normal}>
+              {props.underApplication.semester}
+            </div>
+          </div>
+          <div className={classes.bold}>
+            <div>Room Number :</div>{" "}
+            <div className={classes.normal}>
+              {props.underApplication.room_no}
+            </div>
+          </div>
+          <div className={classes.bold}>
+            <div>Scheduled Date :</div>{" "}
+            <div className={classes.normal}>{props.underApplication.date}</div>
+          </div>
+          <div className={classes.bold}>
+            Available Seats :{" "}
+            <div className={classes.normal}>
+              {" "}
+              {props.underApplication.total_seats}
+            </div>
+          </div>
+          <div className={classes.bold}>
+            Total Seats : <div className={classes.normal}> 20</div>
+          </div>
         </div>
       </Dialog>
     </React.Fragment>

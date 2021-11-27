@@ -10,20 +10,14 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
-import DashboardCard from "../components/DoctorDashboardCard";
+import DashboardCard from "../components/FacultyDashboardCard";
 import { Link } from "react-router-dom";
 
 import { useHistory } from "react-router-dom";
 
-
 const useStyles = makeStyles((theme) => ({
   main: {
-    // whiteSpace: "nowrap",
-    // maxHeight: 650,
-    // height: 618,
     alignItems: "center",
-    
-   
   },
   AppBar: {
     position: "sticky",
@@ -33,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     
   },
   AppBarContent: {
-    // display: "flex",
     alignItems: "center",
     height: 55,
     minHeight: 55,
@@ -51,10 +44,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: ".1em",
     fontSize: "25px",
     marginTop: "10px",
-    textAlign: "center",
- 
-    // backgroundColor: "#eeb7ba",
-   
+    textAlign: "center",  
   },
   typoTotal: {
     marginLeft: 5,
@@ -87,12 +77,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 
   margins :{
-
     [theme.breakpoints.up("md")]: {
       margin: "0px 200px 0px 200px",
     },
     margin: "2px",
-
   },
 }));
 
@@ -117,16 +105,13 @@ ElevationScroll.propTypes = {
 const FacultyDashboard = (props) => {
   const classes = useStyles();
   const history = useHistory();
- 
   const [classrooms, setClassrooms] = useState([]);
- 
-  const [classroomSize, setClassroomSize] = useState("");
 
   useEffect(() => {
     const SendingRequest = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/doctor/getAllAppointment",
+          "http://localhost:3000/faculty/myclasses",
           {
             headers: {
               "x-access-token": localStorage.getItem("token"),
@@ -135,21 +120,8 @@ const FacultyDashboard = (props) => {
           }
         );
         const responseData = await response.json();
-        console.log(responseData.appointment);
-        let temp1 = [];
-        let temp2 = [];
-        let temp3 = [];
-        for (let i = 0; i < responseData.appointment.length; i++) {
-          if (responseData.appointment[i].status === 0)
-            temp1.push(responseData.appointment[i]);
-          if (responseData.appointment[i].status === 1)
-            temp2.push(responseData.appointment[i]);
-          if (responseData.appointment[i].status === 2)
-            temp3.push(responseData.appointment[i]);
-        }
-        
-        setClassrooms(temp3);
-        setClassroomSize(temp3.length);
+        console.log(responseData.classes);
+        setClassrooms(responseData.classes)
       } catch (err) {
         console.log("hey error");
         console.log(err);
@@ -160,11 +132,6 @@ const FacultyDashboard = (props) => {
 
   return (
     <div className={classes.root}>
-      {/* <Toolbar /> */}
-      {/* <Link to="/uploadPrescriptionDoctor">
-        <Button>Write a Prescription</Button>
-      </Link> */}
-
       <div className={classes.extra2}>
         <Button className={classes.Button} href="/createclassroom">
           Create New Classroom
@@ -181,9 +148,6 @@ const FacultyDashboard = (props) => {
                       <Typography variant="h6" className={classes.typo}>
                         Classrooms
                       </Typography>
-                      <Typography variant="h6" className={classes.typoTotal}>
-                        {classroomSize}
-                      </Typography>
                     </Toolbar>
                   </AppBar>
                 </ElevationScroll>
@@ -192,10 +156,9 @@ const FacultyDashboard = (props) => {
                 <Grid container row   spacing= {2} lg={12} overflow="auto">
                     {classrooms.map((item) => {
                       return (
-                       
                         <Grid item xs = {12} lg = {6}>
                           <DashboardCard underApplication={item} option={false} />
-                          </Grid>
+                        </Grid>
                       );
                     })}
                   </Grid>
