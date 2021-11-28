@@ -231,7 +231,7 @@ const Navbar = () => {
                 aria-label="open drawer"
               >
                 <Link to="/" style={{textDecoration: 'none'}}>
-                <img src="./logo.png" alt="logo" className={classes.logo}></img>
+                <img src="./heading.png" alt="logo" className={classes.logo}></img>
                 </Link>
               
               </IconButton>
@@ -277,7 +277,7 @@ const Navbar = () => {
                 aria-label="open drawer"
               >
                 <Link to="/" style={{textDecoration: 'none', margin:0, padding:0}}>
-                <img src="./logo.png" alt="logo" className={classes.logo}></img>
+                <img src="./heading.png" alt="logo" className={classes.logo}></img>
                 </Link>
               </IconButton>
               {/* <Link to="/" style={{textDecoration: 'none'}}>

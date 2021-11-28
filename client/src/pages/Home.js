@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "right",
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      height: 950,
+      height: 900,
      
       width: "100%",
    
@@ -137,7 +137,7 @@ const Home = () => {
               Check My Health
             </Button>
           </div> */}
-          <img src="./home.png" alt="lady" className={classes.BackgroundHead} />
+          <img src="./scheduler5.png" alt="lady" className={classes.BackgroundHead} />
         {/* </div> */}
       {/* </div> */}
 
