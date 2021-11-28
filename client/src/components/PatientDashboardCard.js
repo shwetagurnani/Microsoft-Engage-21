@@ -113,6 +113,9 @@ export default function OutlinedCard(props) {
   const bull = <span className={classes.bullet}>•</span>;
   const [open, setOpen] = React.useState(false);
   const [appId, setAppId] = React.useState("");
+  const [status, setStatus] = React.useState(1)
+  const [buttontext, setButtontext] = React.useState("Book a seat")
+  const [seats, setSeats] = React.useState(props.underApplication.total_seats)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -122,58 +125,26 @@ export default function OutlinedCard(props) {
     setOpen(false);
   };
 
-  const handleReject = () => {
-    const SendingRequest = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/doctor/changeStatus", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            app_id: props.underApplication._id,
-            status: "2",
-          }),
-        });
-        const responseData = await response.json();
-        history.go();
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    SendingRequest();
-    setOpen(false);
-  };
-
   useEffect(() => {
-    if (props.underApplication._id) {
-      setAppId(props.underApplication._id);
-      console.log(appId);
-    }
-  }, [props.underApplication._id]);
+      if(seats === 0)
+        setStatus(0);
+      else
+        setStatus(1)
+  }, [seats])
 
-  const handleAccept = () => {
-    const SendingRequest = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/doctor/changeStatus", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            app_id: props.underApplication._id,
-            status: "1",
-          }),
-        });
-        const responseData = await response.json();
-        console.log(responseData);
-        history.go();
-      } catch (err) {
-        console.log(err);
+  const handleBooking = () => {
+      if(buttontext === "Book a seat") {
+        setButtontext("Cancel my seat");
+        setSeats(prev => {
+          return prev-1;
+        })
       }
-    };
-    SendingRequest();
-    setOpen(false);
+      else {
+        setButtontext("Book a seat")
+      setSeats(prev => {
+        return prev+1;
+      })
+    }
   };
 
   return (
@@ -203,7 +174,6 @@ export default function OutlinedCard(props) {
         <div className={classes.modal}>
 
         <div className={classes.headd}>
-        {/* Organisation Behaviour */}
         {props.underApplication && props.underApplication.subject}
         </div>
         <div className={classes.teacher}>
@@ -221,30 +191,16 @@ export default function OutlinedCard(props) {
         <div className={classes.bold}>
         <div>Schedule :</div> <div className={classes.normal}>{props.underApplication && props.underApplication.date}</div>
         </div>
-        {/* <div className={classes.bold}>
-        Scheduled Time : <div className={classes.normal}> 11:00 am</div>
-        </div> */}
         <div className={classes.bold}>
-        Available Seats : <div className={classes.normal}> 20</div>
+        Available Seats : <div className={classes.normal}>{seats}</div>
         </div>
         <div className={classes.bold}>
-        Total Seats :  <div className={classes.normal}> 50</div>
+        Total Seats :  <div className={classes.normal}>{props.underApplication && props.underApplication.total_seats}</div>
         </div>
-        <Button className={classes.Button} >
-            Book A seat
-          </Button>
-
-       
-        {/* {props.option && (
-          <DialogActions>
-            <Button onClick={handleReject} color="primary">
-              Reject
-            </Button>
-            <Button onClick={handleAccept} color="primary" autoFocus>
-              Accept
-            </Button>
-          </DialogActions>
-        )} */}
+        {status && <Button className={classes.Button} onClick={handleBooking} >
+            {buttontext}
+        </Button>}
+        {!status && <h1>All Seats Booked</h1>}
         </div>
       </Dialog>
     </React.Fragment>

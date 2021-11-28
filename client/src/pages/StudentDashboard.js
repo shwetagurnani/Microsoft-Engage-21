@@ -124,7 +124,6 @@ const StudentDashboard = (props) => {
           }
         );
         const responseData = await response.json();
-        console.log(responseData.classes);
         setUnderApplication(responseData.classes)
       } catch (err) {
         console.log(err);
