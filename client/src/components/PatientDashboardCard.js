@@ -52,25 +52,19 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "uppercase",
     color: "rgba(0, 128, 128, 1)",
     letterSpacing: ".1em",
-    // fontSize: "20px",
     marginTop: "10px",
-    // backgroundColor: "#eeb7ba",
   },
   headd: {
     fontFamily: "Kumbh Sans, sans-serif",
     fontWeight: "900",
-    // textTransform: "uppercase",
     color: "#004d4d",
     letterSpacing: ".04em",
     fontSize: "35px",
     marginBottom: "10px",
-    // backgroundColor: "#eeb7ba",
-
   },
   teacher:{
     fontFamily: "Kumbh Sans, sans-serif",
     fontWeight: "600",
-    // textTransform: "uppercase",
     color: "#004d4d",
     letterSpacing: ".04em",
     fontSize: "25px",
@@ -80,7 +74,6 @@ const useStyles = makeStyles((theme) => ({
   bold: {
     fontFamily: "Kumbh Sans, sans-serif",
     fontWeight: "600",
-    // textTransform: "uppercase",
     color: "#1a0000",
     letterSpacing: ".04em",
     fontSize: "20px",
@@ -95,7 +88,6 @@ const useStyles = makeStyles((theme) => ({
   normal: {
     fontFamily: "Kumbh Sans, sans-serif",
     fontWeight: "300",
-    // textTransform: "uppercase",
     color: "#1a0000",
     letterSpacing: ".04em",
     fontSize: "20px",
@@ -107,19 +99,15 @@ const useStyles = makeStyles((theme) => ({
   Button: {
     backgroundColor: "rgba(0, 128, 128, 1)",
     color: "#fff",
-    // margin: theme.spacing(3, 2),
-    // width: "300px",
     height: 35,
-    // alignItem: "Center",
     marginLeft: "30%",
     margin: "40px 0 0 0",
     width: "40%",
-
-  
   },
 }));
 
 export default function OutlinedCard(props) {
+  console.log(props.underApplication)
   const classes = useStyles();
   const history = useHistory();
   const bull = <span className={classes.bullet}>•</span>;
@@ -215,27 +203,27 @@ export default function OutlinedCard(props) {
         <div className={classes.modal}>
 
         <div className={classes.headd}>
-        Organisation Behaviour
-        {/* {props.underApplication && props.underApplication.patient_name} */}
+        {/* Organisation Behaviour */}
+        {props.underApplication && props.underApplication.subject}
         </div>
         <div className={classes.teacher}>
         Dr. Avantika Singh
         </div>
         <div className={classes.bold}>
-        <div>Branch :</div> <div className={classes.normal}> CSE</div>
+        <div>Branch :</div> <div className={classes.normal}>{props.underApplication && props.underApplication.branch}</div>
         </div>
         <div className={classes.bold}>
-        <div>Semester :</div> <div className={classes.normal}> 7</div>
+        <div>Semester :</div> <div className={classes.normal}>{props.underApplication && props.underApplication.semester}</div>
         </div>
         <div className={classes.bold}>
-        <div>Room Number :</div> <div className={classes.normal}> A1</div>
+        <div>Room Number :</div> <div className={classes.normal}>{props.underApplication && props.underApplication.room_no}</div>
         </div>
         <div className={classes.bold}>
-        <div>Scheduled Date :</div> <div className={classes.normal}> 10/11/2021</div>
+        <div>Schedule :</div> <div className={classes.normal}>{props.underApplication && props.underApplication.date}</div>
         </div>
-        <div className={classes.bold}>
+        {/* <div className={classes.bold}>
         Scheduled Time : <div className={classes.normal}> 11:00 am</div>
-        </div>
+        </div> */}
         <div className={classes.bold}>
         Available Seats : <div className={classes.normal}> 20</div>
         </div>

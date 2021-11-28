@@ -17,22 +17,15 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   main: {
-    // whiteSpace: "nowrap",
-    // maxHeight: 650,
-    // height: 618,
     alignItems: "center",
-    
-   
   },
   AppBar: {
     position: "sticky",
     backgroundColor: "rgba(0, 128, 128, 0.5)",
     color: "white",
     height: 62,
-    
   },
   AppBarContent: {
-    // display: "flex",
     alignItems: "center",
     height: 55,
     minHeight: 55,
@@ -51,9 +44,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "25px",
     marginTop: "10px",
     textAlign: "center",
- 
-    // backgroundColor: "#eeb7ba",
-   
   },
   typoTotal: {
     marginLeft: 5,
@@ -126,7 +116,7 @@ const StudentDashboard = (props) => {
     const SendingRequest = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/patient/getAllAppointment",
+          "http://localhost:3000/student/allclasses",
           {
             headers: {
               "x-access-token": localStorage.getItem("token"),
@@ -134,24 +124,8 @@ const StudentDashboard = (props) => {
           }
         );
         const responseData = await response.json();
-        console.log(responseData.appointment);
-        let temp1 = [];
-        let temp2 = [];
-        let temp3 = [];
-        for (let i = 0; i < responseData.appointment.length; i++) {
-          if (responseData.appointment[i].status === 0)
-            temp1.push(responseData.appointment[i]);
-          if (responseData.appointment[i].status === 1)
-            temp2.push(responseData.appointment[i]);
-          if (responseData.appointment[i].status === 2)
-            temp3.push(responseData.appointment[i]);
-        }
-        setUnderApplication(temp1);
-        setAcceptedApplication(temp2);
-        setRejectedApplication(temp3);
-        setUnderSize(temp1.length);
-        setAcceptSize(temp2.length);
-        setRejectSize(temp3.length);
+        console.log(responseData.classes);
+        setUnderApplication(responseData.classes)
       } catch (err) {
         console.log(err);
       }
@@ -161,31 +135,8 @@ const StudentDashboard = (props) => {
 
   return (
     <div className={classes.root}>
-      {/* <Toolbar /> */}
-      {/* <Button
-        variant="contained"
-        className={classes.Button}
-        onClick={() => {
-          history.push("/patient/getAppointment");
-        }}
-      >
-        Get Appointment
-      </Button>
-      <Button
-        variant="contained"
-        className={classes.Button}
-        onClick={() => {
-          history.push("/chat");
-        }}
-      >
-        Chat
-      </Button> */}
       <div>
-        <div className={classes.extra2}>
-          <Button className={classes.Button} href="/uploadPrescriptionPatient">
-            Upload A Prescription
-          </Button>
-        </div>
+        <br></br>
         <div className = {classes.margins}>
         <Grid container className={classes.main} >
         <Grid item xs={12} lg={12}>
@@ -195,7 +146,7 @@ const StudentDashboard = (props) => {
                 <AppBar className={classes.AppBar}>
                   <Toolbar className={classes.AppBarContent}>
                     <Typography variant="h6" className={classes.typo}>
-                      Under Consideration
+                     Scheduled Classes
                     </Typography>
                     <Typography variant="h6" className={classes.typoTotal}>
                       {underSize}
@@ -212,20 +163,14 @@ const StudentDashboard = (props) => {
                       <DashboardCard underApplication={item} />
                       </Grid>
                     ) 
-                   
-                      
                   })}
                 </Grid>
                 </div>
               </Container>
             </React.Fragment>
           </Grid>
-
-         
-         
         </Grid>
         </div>
-       
       </div>
     </div>
   );
