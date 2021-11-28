@@ -7,11 +7,13 @@ This is a web application which facilitates the students to book a seat for in-p
 * Frontend
 
 	1.ReactJS
+	
 	2.Material UI
 
 * Backend
 
 	1.NodeJS
+	
 	2.MongoDB (Database)
 
 ### Instructions to Install and Setup
