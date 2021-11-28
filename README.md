@@ -20,7 +20,7 @@ This is a web application which facilitates the students to book a seat for in-p
 
 #### Download the Zip or clone the repository using command : 
 
-git clone git@github.com:shwetagurnani/Microsoft-Engage-21.git
+git clonehttps://github.com/shwetagurnani/Microsoft-Engage-21.git
 
 #### Open One terminal and enter following commands
 
