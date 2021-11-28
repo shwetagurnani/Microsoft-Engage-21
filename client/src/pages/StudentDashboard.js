@@ -10,7 +10,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
-import DashboardCard from "../components/PatientDashboardCard";
+import DashboardCard from "../components/StudentDashboardCard";
 import { Link } from "react-router-dom";
 
 import { useHistory } from "react-router-dom";
@@ -70,18 +70,16 @@ const useStyles = makeStyles((theme) => ({
   },
 
   extra2: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-	},
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
-  margins :{
-
+  margins: {
     [theme.breakpoints.up("md")]: {
       margin: "0px 200px 0px 200px",
     },
     margin: "2px",
-
   },
 }));
 function ElevationScroll(props) {
@@ -124,7 +122,7 @@ const StudentDashboard = (props) => {
           }
         );
         const responseData = await response.json();
-        setUnderApplication(responseData.classes)
+        setUnderApplication(responseData.classes);
       } catch (err) {
         console.log(err);
       }
@@ -136,39 +134,45 @@ const StudentDashboard = (props) => {
     <div className={classes.root}>
       <div>
         <br></br>
-        <div className = {classes.margins}>
-        <Grid container className={classes.main} >
-        <Grid item xs={12} lg={12}>
-            <React.Fragment>
-              <CssBaseline />
-              <ElevationScroll {...props}>
-                <AppBar className={classes.AppBar}>
-                  <Toolbar className={classes.AppBarContent}>
-                    <Typography variant="h6" className={classes.typo}>
-                     Scheduled Classes
-                    </Typography>
-                    <Typography variant="h6" className={classes.typoTotal}>
-                      {underSize}
-                    </Typography>
-                  </Toolbar>
-                </AppBar>
-              </ElevationScroll>
-              <Container>
-              <div style={{ padding: 20 }}>
-                <Grid container row   spacing= {2} lg={12} overflow="auto">
-                  {underApplication.map((item) => {
-                    return (
-                      <Grid item xs = {12} lg = {6} >
-                      <DashboardCard underApplication={item} />
-                      </Grid>
-                    ) 
-                  })}
-                </Grid>
-                </div>
-              </Container>
-            </React.Fragment>
+        {/* <div style={marginLeft:"10px"}>
+        <Button className={classes.Button}>hi</Button>
+        </div> */}
+        <div className={classes.margins}>
+          <Grid container className={classes.main}>
+            <Grid item xs={12} lg={12}>
+              <React.Fragment>
+                <CssBaseline />
+                <ElevationScroll {...props}>
+                  <AppBar className={classes.AppBar}>
+                    <Toolbar className={classes.AppBarContent}>
+                  
+                   
+                      <Typography variant="h6" className={classes.typo}>
+                        Scheduled Classes
+                      </Typography>
+                      <Typography variant="h6" className={classes.typoTotal}>
+                        {underSize}
+                      </Typography>
+                    </Toolbar>
+                  </AppBar>
+                </ElevationScroll>
+                <Container>
+                  <div style={{ padding: 20 }}>
+                    <Grid container row spacing={2} lg={12} overflow="auto">
+                      {underApplication &&
+                        underApplication.map((item) => {
+                          return (
+                            <Grid item xs={12} lg={6}>
+                              <DashboardCard underApplication={item} />
+                            </Grid>
+                          );
+                        })}
+                    </Grid>
+                  </div>
+                </Container>
+              </React.Fragment>
+            </Grid>
           </Grid>
-        </Grid>
         </div>
       </div>
     </div>

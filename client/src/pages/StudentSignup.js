@@ -126,11 +126,11 @@ const StudentSignup = (props) => {
           console.log(res.data);
           localStorage.setItem("token", res.data.token);
           console.log("better entered")
-          props.history.push("/facultydashboard");
+          props.history.push("/studentdashboard");
         }
          else if (res.data.email) {
           alert("User already exist, please sign in to continue");
-          history.push("/studentlogin");
+          props.history.push("/studentlogin");
         } 
       });
   };

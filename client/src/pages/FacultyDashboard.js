@@ -123,7 +123,6 @@ const FacultyDashboard = (props) => {
         console.log(responseData.classes);
         setClassrooms(responseData.classes)
       } catch (err) {
-        console.log("hey error");
         console.log(err);
       }
     };
@@ -154,7 +153,7 @@ const FacultyDashboard = (props) => {
                 <Container>
                 <div style={{ padding: 20 }}>
                 <Grid container row   spacing= {2} lg={12} overflow="auto">
-                    {classrooms.map((item) => {
+                    {classrooms && classrooms.map((item) => {
                       return (
                         <Grid item xs = {12} lg = {6}>
                           <DashboardCard underApplication={item} option={false} />

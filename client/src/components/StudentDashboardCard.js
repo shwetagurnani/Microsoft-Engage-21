@@ -116,7 +116,8 @@ export default function OutlinedCard(props) {
   const [status, setStatus] = React.useState(1)
   const [buttontext, setButtontext] = React.useState("Book a seat")
   const [seats, setSeats] = React.useState(props.underApplication.total_seats)
-
+  const [seatno, setSeatno] = React.useState(4)
+  const [visible, setVisible] = React.useState(false)
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -126,6 +127,8 @@ export default function OutlinedCard(props) {
   };
 
   useEffect(() => {
+      if(seats === 1)
+        setSeatno(1);
       if(seats === 0)
         setStatus(0);
       else
@@ -134,6 +137,7 @@ export default function OutlinedCard(props) {
 
   const handleBooking = () => {
       if(buttontext === "Book a seat") {
+        setVisible(true);
         setButtontext("Cancel my seat");
         setSeats(prev => {
           return prev-1;
@@ -144,6 +148,7 @@ export default function OutlinedCard(props) {
       setSeats(prev => {
         return prev+1;
       })
+      setVisible(false)
     }
   };
 
@@ -156,10 +161,10 @@ export default function OutlinedCard(props) {
       >
         <CardContent className={classes.CardContent}>
           <Typography variant="h5" component="h2" className={classes.typo}>
-            {props.underApplication && props.underApplication.doctor_name}
+            Subject: {props.underApplication && props.underApplication.subject}
           </Typography>
-          <Typography variant="body2" component="p">
-            {props.underApplication && props.underApplication.ailment}
+          <Typography variant="h6" component="h2" className={classes.typo}>
+            Semester: {props.underApplication && props.underApplication.semester}
           </Typography>
         </CardContent>
       </Card>
@@ -200,6 +205,7 @@ export default function OutlinedCard(props) {
         {status && <Button className={classes.Button} onClick={handleBooking} >
             {buttontext}
         </Button>}
+        {visible  && <h1>Your seat number is {seatno}</h1>}
         {!status && <h1>All Seats Booked</h1>}
         </div>
       </Dialog>
