@@ -43,7 +43,7 @@ const App = () => {
             <ProtectedRoutes path="/getAppointment">
               <GetAppointment />
             </ProtectedRoutes>
-            <Route path="/features" component={Features} />
+            {/* <Route path="/features" component={Features} />
             <Route path="/aitools" component={AiTools} />
             <ProtectedRoutes path="/prescription">
               <Prescription />
@@ -51,17 +51,17 @@ const App = () => {
             <Route path="/pcos" component={Pcos} />
             <Route path="/cervical" component={Cervical} />
             <Route path="/breastcancer" component={BreastCancer} />
-            <Route path="/doctorlist" component={DoctorList} />
+            <Route path="/doctorlist" component={DoctorList} /> */}
             
             <Route
               path="/createclassroom"
               component={CreateClassroom}
             />
-            <Route
+            {/* <Route
               path="/uploadPrescriptionPatient"
               component={NewPrescriptionPatient}
             />
-            <Route path="/doctorHistory" component={doctorHistoryList} />
+            <Route path="/doctorHistory" component={doctorHistoryList} /> */}
           </Switch>
 
           <Footer />

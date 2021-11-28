@@ -145,8 +145,6 @@ const StudentDashboard = (props) => {
                 <ElevationScroll {...props}>
                   <AppBar className={classes.AppBar}>
                     <Toolbar className={classes.AppBarContent}>
-                  
-                   
                       <Typography variant="h6" className={classes.typo}>
                         Scheduled Classes
                       </Typography>

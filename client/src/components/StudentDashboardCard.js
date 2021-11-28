@@ -166,6 +166,9 @@ export default function OutlinedCard(props) {
           <Typography variant="h6" component="h2" className={classes.typo}>
             Semester: {props.underApplication && props.underApplication.semester}
           </Typography>
+          {visible && <Typography variant="h6" component="h2" className={classes.typo}>
+            You booked your seat for this class
+          </Typography>}
         </CardContent>
       </Card>
       <Dialog
