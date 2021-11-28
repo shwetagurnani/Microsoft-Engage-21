@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
     width: "70%",
     
     [theme.breakpoints.up("md")]: {
-      width: "40%",
-      padding: theme.spacing(0, 16, 0, 0),
+      width: "35%",
+      padding: theme.spacing(0, 4, 0, 0),
     },
   },
 
@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(4,2),
       marginBottom: "140px",
     },
+    paddingTop: 80
   },
   footer: {
     backgroundColor: "#001a66",
@@ -135,7 +136,7 @@ const FacultySignup = () => {
   const btnstyle = { margin: "8px 0" };
   return (
     <div className={classes.extra}>
-    <img src="./home5.jpg" alt="lady" className={classes.BackgroundHead} />
+    <img src="./scheduler3.jpg" alt="lady" className={classes.BackgroundHead} />
     <div>
       <Grid>
         <div className={classes.paperStyle}>

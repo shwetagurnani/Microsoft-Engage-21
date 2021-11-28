@@ -5,30 +5,24 @@ import Button from "@material-ui/core/Button";
 // import BackgroundHeader from "./public/Bg1.png";
 
 const useStyles = makeStyles((theme) => ({
-  BackgroundHead: {
-    // backgroundImage: 'url('+ BackgroundHeader+')',
-    height: 'auto',
 
-    // position: 'absolute',
+  BackgroundHead: {
+    height: 'auto',
     backgroundSize: "cover",
     backgroundPosition: "right",
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      height: 900,
-     
+      height: 700,
       width: "100%",
    
     },
-
-    //  margin: 24,
-    //  padding: 24,
   },
   Head: {
     backgroundColor: "#eeb7ba",
     flexGrow: 1,
   },
   important: {
-    // position: "relative",
+  
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
@@ -88,8 +82,12 @@ const useStyles = makeStyles((theme) => ({
     width: 300,
     [theme.breakpoints.up("md")]: {
       height: "auto",
-      width: "auto",
+      width: 500,
+      // marginLeft: "10%",
+      marginTop: "10%",
+      marginRight: "15%",
     },
+  
   },
   para: {
     margin: theme.spacing(.1, .1),
@@ -98,7 +96,9 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Antic, sans-serif',
     fontSize: "20px",
     [theme.breakpoints.up("md")]: {
-      margin: theme.spacing(8, 8),
+      margin: theme.spacing(2, 2),
+      marginRight: "20%",
+      marginTop: "10%",
     },
   },
 text: {
@@ -111,6 +111,8 @@ text: {
     // textShadow: "2px 2px 8px #404040",
     [theme.breakpoints.up("md")]: {
       fontSize: "80px",
+      paddingRight: "10%",
+      marginTop: "10%",
   
   },
 }
@@ -142,7 +144,7 @@ const Home = () => {
       {/* </div> */}
 
       <div className={classes.features}>
-        <img src="./doctor.png" alt="lady" className={classes.image} />
+        <img src="./scheduler.jpg" alt="lady" className={classes.image} />
         <div>
           <div className={classes.text}>
             About Us

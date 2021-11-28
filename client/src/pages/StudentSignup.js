@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundPosition: "center",
     width: "70%",
-    padding: theme.spacing(4, 16),
+    padding: theme.spacing(4, 4),
     [theme.breakpoints.up("md")]: {
-      width: "40%",
+      width: "35%",
     },
   },
 
@@ -141,7 +141,7 @@ const StudentSignup = (props) => {
   };
   return (
     <div className={classes.extra}>
-      <img src="./home5.jpg" alt="lady" className={classes.BackgroundHead} />
+      <img src="./scheduler3.jpg" alt="lady" className={classes.BackgroundHead} />
       <div>
         <Grid>
           <div className={classes.paperStyle}>
